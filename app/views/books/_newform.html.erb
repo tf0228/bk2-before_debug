@@ -1,4 +1,14 @@
 <%= form_for(book) do |f| %>
+	<% if book.errors.present? %>
+		<div id="error_explanation">
+			<h3><%= pluralize(book.errors.count, "error") %> prohibited this obj from being saved:</h3>
+			<ul>
+		  	<% book.errors.full_messages.each do |msg| %>
+		    	<li><%= msg %></li>
+		  	<% end %>
+			</ul>
+		</div>
+	<% end %>
 	<div class="field row">
 		<%= f.label :title %>
 		<%= f.text_field :title, class: "col-xs-12 book_title" %>
@@ -13,3 +23,5 @@
 		<%= f.submit class: "btn btn-primary col-xs-12" %>
 	</div>
 <% end %>
+
+
